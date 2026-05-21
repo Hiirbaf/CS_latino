@@ -438,12 +438,8 @@ class SoloLatino : MainAPI() {
         // =========================
         val doc = app.get(url).document
 
-        val title = doc.selectFirst(
-            "meta[property=og:title]"
-        )
-            ?.attr("content")
-            ?.substringBefore("|")
-            ?.trim()
+        val title = doc.selectFirst("h1")
+            ?.text()?.trim()
             ?: "Sin título"
 
         val poster = doc.selectFirst(
